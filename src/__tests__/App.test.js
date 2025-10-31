@@ -76,7 +76,7 @@ test("deletes the question when the delete button is clicked", async () => {
 });
 
 test("updates the answer when the dropdown is changed", async () => {
-  const { rerender } = render(<App />);
+  render(<App />);
 
   fireEvent.click(screen.queryByText(/View Questions/));
 
@@ -86,9 +86,7 @@ test("updates the answer when the dropdown is changed", async () => {
     target: { value: "3" },
   });
 
-  expect(screen.queryAllByLabelText(/Correct Answer/)[0].value).toBe("3");
-
-  rerender(<App />);
+  await screen.findByDisplayValue("choice 4");
 
   expect(screen.queryAllByLabelText(/Correct Answer/)[0].value).toBe("3");
 });
